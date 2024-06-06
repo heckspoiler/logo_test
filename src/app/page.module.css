@@ -1,0 +1,23 @@
+.InfoField {
+    position: absolute;
+    z-index: 10;
+    padding: 3rem;
+    top: 0;
+    left: 0;
+    width: 100%;
+    color: #C9C323;
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    gap: 1.3em;
+    align-items: left;
+    font-size: 20px;
+}
+
+.InfoField p {
+    font-family: var(--textfont);
+    max-width: 22rem;
+    line-height: 1.5;
+    font-size: 0.9rem;
+    text-align: justify;
+}

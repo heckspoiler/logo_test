@@ -12,6 +12,8 @@ export default function Scene() {
         background: '#000000',
         background: '-webkit-linear-gradient(to left, #191919, #000000)',
         background: 'linear-gradient(to left, #191919, #000000)',
+        height: '100vh',
+        width: '100vw',
       }}
     >
       <ambientLight intensity={0.5} />

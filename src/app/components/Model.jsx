@@ -1,11 +1,12 @@
 import { useGLTF, Text, MeshTransmissionMaterial } from '@react-three/drei';
 import { useFrame, useThree } from '@react-three/fiber';
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useControls } from 'leva';
 
 export const Model = () => {
   const mesh = useRef();
-  const scaleValue = 6;
+  let scaleValue = 6;
+
   const { nodes } = useGLTF('/medias/logo__3d.glb');
   const { viewport } = useThree();
 

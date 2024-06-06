@@ -9,7 +9,7 @@ const Scene = dynamic(() => import('@/app/components/Scene'), {
 export default function Home() {
   return (
     <main className={styles.main}>
-      <InfoField styles={styles} />
+      {/* <InfoField styles={styles} /> */}
       <Scene />
     </main>
   );

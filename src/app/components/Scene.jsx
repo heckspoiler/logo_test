@@ -44,7 +44,7 @@ export default function Scene() {
         penumbra={1}
         castShadow
       />
-      <Environment preset="studio" />
+      <Environment preset="sunset" />
       <Model />
     </Canvas>
   );

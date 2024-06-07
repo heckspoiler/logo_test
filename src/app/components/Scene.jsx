@@ -40,13 +40,13 @@ export default function Scene() {
         shadow-camera-bottom={-10}
       />
       <spotLight
-        intensity={10}
+        intensity={1}
         position={[0, 10, 0]}
         angle={0.2}
         penumbra={1}
         castShadow
       />
-      <Environment preset="night" />
+      <Environment preset="studio" />
       <Model />
     </Canvas>
   );

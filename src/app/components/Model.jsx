@@ -1,14 +1,19 @@
 import { useGLTF, Text, MeshTransmissionMaterial } from '@react-three/drei';
 import { useFrame, useThree } from '@react-three/fiber';
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useControls } from 'leva';
 
 export const Model = () => {
   const mesh = useRef();
-  let scaleValue = 6;
+  const { viewport } = useThree();
+  const [scaleValue, setScaleValue] = useState(1);
+  const [upperYValue, setUpperYValue] = useState(0);
+  const [lowerYValue, setLowerYValue] = useState(0);
+  const [upperFontSize, setUpperFontSize] = useState(0);
+  const [lowerFontSize, setLowerFontSize] = useState(0);
+  const [logoXValue, setLogoXValue] = useState(0);
 
   const { nodes } = useGLTF('/medias/logo__3d.glb');
-  const { viewport } = useThree();
 
   const materialProps = useControls({
     thickness: { value: 0.2, min: 0, max: 3, step: 0.05 },
@@ -36,13 +41,22 @@ export const Model = () => {
     mesh.current.scale.set(scale, scale, scale);
     mesh.current.rotation.z += 0.001;
     mesh.current.position.y = y;
+    mesh.current.position.x = y;
   });
+
+  useEffect(() => {
+    setScaleValue(window.innerWidth < 600 ? 20 : 6);
+    setUpperYValue(window.innerWidth < 600 ? -2.3 : 1.3);
+    setLowerYValue(window.innerWidth < 600 ? 2.1 : 1.8);
+    setUpperFontSize(window.innerWidth < 600 ? 0.6 : 0.7);
+    setLowerFontSize(window.innerWidth < 600 ? 0.3 : 0.15);
+  }, [window.innerWidth]);
 
   return (
     <group dispose={null} scale={viewport.width / 3}>
       <Text
-        position={[0, 1.3, -2.5]}
-        fontSize={0.7}
+        position={[0, upperYValue, -2.5]}
+        fontSize={upperFontSize}
         fontWeight={800}
         color="yellow"
         strokeColor="yellow"
@@ -52,8 +66,8 @@ export const Model = () => {
         COMING SOON
       </Text>
       <Text
-        position={[-1.5, 1.8, -2.5]}
-        fontSize={0.15}
+        position={[-1.5, lowerYValue, -2.5]}
+        fontSize={lowerFontSize}
         fontWeight={300}
         color="transparent"
         strokeColor="yellow"

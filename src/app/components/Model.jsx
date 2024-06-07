@@ -11,13 +11,13 @@ export const Model = () => {
   const [lowerYValue, setLowerYValue] = useState(0);
   const [upperFontSize, setUpperFontSize] = useState(0);
   const [lowerFontSize, setLowerFontSize] = useState(0);
-  const [logoXValue, setLogoXValue] = useState(0);
+  const isMobile = window.innerWidth < 600;
 
   const { nodes } = useGLTF('/medias/logo__3d.glb');
 
   const materialProps = useControls({
     thickness: { value: 0.2, min: 0, max: 3, step: 0.05 },
-    roughness: { value: 0.25, min: 0, max: 1, step: 0.1 },
+    roughness: { value: 0.25, min: 0, max: 1, step: 0.01 },
     transmission: { value: 1, min: 0, max: 1, step: 0.1 },
     ior: { value: 1.2, min: 0, max: 3, step: 0.1 },
     chromaticAberration: { value: 0.02, min: 0, max: 1 },
@@ -45,8 +45,6 @@ export const Model = () => {
   });
 
   useEffect(() => {
-    const isMobile = window.innerWidth < 600;
-
     setScaleValue(isMobile ? 20 : 6);
     setUpperYValue(isMobile ? -2.3 : 1.3);
     setLowerYValue(isMobile ? 2.1 : 1.8);
@@ -76,7 +74,7 @@ export const Model = () => {
         strokeWidth={0.02}
         font="/Nohemi-Regular.woff"
       >
-        404HERTZ
+        404Hz
       </Text>
       <mesh ref={mesh} {...nodes.Rig} geometry={nodes.Rig.geometry}>
         <MeshTransmissionMaterial {...materialProps} />

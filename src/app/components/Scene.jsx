@@ -29,7 +29,7 @@ export default function Scene() {
         shadow-camera-bottom={-10}
       />
       <directionalLight
-        intensity={1.5}
+        intensity={5.5}
         position={[-2, 5, -2]}
         shadow-mapSize-width={1024}
         shadow-mapSize-height={1024}
@@ -40,13 +40,13 @@ export default function Scene() {
         shadow-camera-bottom={-10}
       />
       <spotLight
-        intensity={1}
+        intensity={10}
         position={[0, 10, 0]}
         angle={0.2}
         penumbra={1}
         castShadow
       />
-      <Environment preset="sunset" />
+      <Environment preset="night" />
       <Model />
     </Canvas>
   );

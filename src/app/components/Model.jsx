@@ -59,9 +59,11 @@ export const Model = () => {
         fontSize={upperFontSize}
         fontWeight={800}
         color="yellow"
-        strokeColor="yellow"
-        strokeWidth={0.02}
         font="/Nohemi-SemiBold.woff"
+        outlineColor={'yellow'}
+        outlineWidth={0.001}
+        outlineBlur={0.9}
+        outlineOpacity={0.08}
       >
         COMING SOON
       </Text>
@@ -69,10 +71,12 @@ export const Model = () => {
         position={[-1.5, lowerYValue, -2.5]}
         fontSize={lowerFontSize}
         fontWeight={300}
-        color="transparent"
-        strokeColor="yellow"
-        strokeWidth={0.02}
+        color="yellow"
         font="/Nohemi-Regular.woff"
+        outlineColor={'yellow'}
+        outlineWidth={0.001}
+        outlineBlur={0.9}
+        outlineOpacity={0.02}
       >
         404Hz
       </Text>

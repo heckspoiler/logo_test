@@ -45,11 +45,13 @@ export const Model = () => {
   });
 
   useEffect(() => {
-    setScaleValue(window.innerWidth < 600 ? 20 : 6);
-    setUpperYValue(window.innerWidth < 600 ? -2.3 : 1.3);
-    setLowerYValue(window.innerWidth < 600 ? 2.1 : 1.8);
-    setUpperFontSize(window.innerWidth < 600 ? 0.6 : 0.7);
-    setLowerFontSize(window.innerWidth < 600 ? 0.3 : 0.15);
+    const isMobile = window.innerWidth < 600;
+
+    setScaleValue(isMobile ? 20 : 6);
+    setUpperYValue(isMobile ? -2.3 : 1.3);
+    setLowerYValue(isMobile ? 2.1 : 1.8);
+    setUpperFontSize(isMobile ? 0.6 : 0.7);
+    setLowerFontSize(isMobile ? 0.3 : 0.15);
   }, [window.innerWidth]);
 
   return (

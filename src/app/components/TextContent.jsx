@@ -1,44 +1,58 @@
-import { useGLTF, Text } from '@react-three/drei';
-import { useFrame, useThree } from '@react-three/fiber';
-import React, { useEffect, useRef, useState } from 'react';
+import { Text } from '@react-three/drei';
+import React, { useEffect, useState } from 'react';
 import { useControls } from 'leva';
-import {
-  EffectComposer,
-  ChromaticAberration,
-  Bloom,
-  Glitch,
-  Vignette,
-  Noise,
-  RenderPass,
-  MaskPass,
-} from '@react-three/postprocessing';
 
-export const TextContent = () => {
-  const mesh = useRef();
-  const controls = useRef();
-  const { viewport, camera } = useThree();
-  const [scaleValue, setScaleValue] = useState(1);
+export const TextContent = ({ isMobile }) => {
   const [upperYValue, setUpperYValue] = useState(0);
   const [lowerYValue, setLowerYValue] = useState(0);
   const [upperFontSize, setUpperFontSize] = useState(0);
   const [lowerFontSize, setLowerFontSize] = useState(0);
-  const isMobile = window.innerWidth < 600;
 
-  const { nodes } = useGLTF('/medias/logo__3d.glb');
+  // const lightProps = useControls('Lights', {
+  //   intensity: { value: 2, min: 0, max: 10 },
+  //   positionX: { value: 2, min: -10, max: 10 },
+  //   positionY: { value: 5, min: -10, max: 10 },
+  //   positionZ: { value: 2, min: -10, max: 10 },
+  //   shadowMapSizeWidth: { value: 1024, min: 512, max: 2048, step: 128 },
+  //   shadowMapSizeHeight: { value: 1024, min: 512, max: 2048, step: 128 },
+  //   shadowCameraFar: { value: 50, min: 0, max: 100 },
+  //   shadowCameraLeft: { value: -10, min: -50, max: 0 },
+  //   shadowCameraRight: { value: 10, min: 0, max: 50 },
+  //   shadowCameraTop: { value: 10, min: 0, max: 50 },
+  //   shadowCameraBottom: { value: -10, min: -50, max: 0 },
+  // });
 
-  const effectProps = useControls('Effects', {
-    chromaticAberration: { value: 0.5, min: 0, max: 20 },
-    bloomIntensity: { value: 0.3, min: 0, max: 1 },
-    glitchIntensity: { value: 0.5, min: 0, max: 1 },
-    vignetteDarkness: { value: 0.5, min: 0, max: 10 },
-    noiseOpacity: { value: 0.2, min: 0, max: 10 },
-  });
+  const lightProps = {
+    intensity: 2,
+    positionX: 2,
+    positionY: 5,
+    positionZ: 2,
+    shadowMapSizeWidth: 1024,
+    shadowMapSizeHeight: 1024,
+    shadowCameraFar: 50,
+    shadowCameraLeft: -10,
+    shadowCameraRight: 10,
+    shadowCameraTop: 10,
+    shadowCameraBottom: -10,
+  };
 
-  useFrame(({ clock }) => {
-    const time = clock.getElapsedTime();
-    const scale = scaleValue + Math.sin(time) * 0.008;
-    const y = Math.sin(time) * 0.01;
-  });
+  // const fourOFourProps = useControls('404', {
+  //   outlineWidth: { value: 0.2, min: 0, max: 10 },
+  //   outlineOffsetX: { value: -0.1, min: -10, max: 10 },
+  //   outlineOffsetY: { value: 0.1, min: -10, max: 10 },
+  //   outlineBlur: { value: 0.5, min: 0, max: 10 },
+  //   outlineColor: { value: '#FAFF00' },
+  //   outlineOpacity: { value: 0.06, min: 0, max: 1 },
+  // });
+
+  const fourOFourProps = {
+    outlineWidth: 0.2,
+    outlineOffsetX: -0.1,
+    outlineOffsetY: 0.1,
+    outlineBlur: 0.5,
+    outlineColor: '#FAFF00',
+    outlineOpacity: 0.06,
+  };
 
   useEffect(() => {
     setUpperYValue(isMobile ? -2.3 : 1.3);
@@ -55,6 +69,12 @@ export const TextContent = () => {
         fontWeight={800}
         color="yellow"
         font="/Nohemi-SemiBold.woff"
+        outlineWidth={fourOFourProps.outlineWidth}
+        outlineOffsetX={fourOFourProps.outlineOffsetX}
+        outlineOffsetY={fourOFourProps.outlineOffsetY}
+        outlineBlur={fourOFourProps.outlineBlur}
+        outlineColor={fourOFourProps.outlineColor}
+        outlineOpacity={fourOFourProps.outlineOpacity}
       >
         COMING SOON
       </Text>
@@ -64,15 +84,41 @@ export const TextContent = () => {
         fontWeight={300}
         color="yellow"
         font="/Nohemi-Regular.woff"
+        outlineWidth={fourOFourProps.outlineWidth}
+        outlineOffsetX={fourOFourProps.outlineOffsetX}
+        outlineOffsetY={fourOFourProps.outlineOffsetY}
+        outlineBlur={fourOFourProps.outlineBlur}
+        outlineColor={fourOFourProps.outlineColor}
+        outlineOpacity={fourOFourProps.outlineOpacity}
       >
         404Hz
       </Text>
-      {/* <EffectComposer>
-        <Bloom intensity={effectProps.bloomIntensity} />
-        <Glitch active={effectProps.glitchIntensity} />
-        <Vignette eskil={false} darkness={effectProps.vignetteDarkness} />
-        <Noise opacity={effectProps.noiseOpacity} />
-      </EffectComposer> */}
+      <directionalLight
+        intensity={lightProps.intensity}
+        position={[
+          lightProps.positionX,
+          lightProps.positionY,
+          lightProps.positionZ,
+        ]}
+        shadow-mapSize-width={lightProps.shadowMapSizeWidth}
+        shadow-mapSize-height={lightProps.shadowMapSizeHeight}
+        shadow-camera-far={lightProps.shadowCameraFar}
+        shadow-camera-left={lightProps.shadowCameraLeft}
+        shadow-camera-right={lightProps.shadowCameraRight}
+        shadow-camera-top={lightProps.shadowCameraTop}
+        shadow-camera-bottom={lightProps.shadowCameraBottom}
+      />
+      <directionalLight
+        intensity={5.5}
+        position={[-2, 5, -2]}
+        shadow-mapSize-width={1024}
+        shadow-mapSize-height={1024}
+        shadow-camera-far={50}
+        shadow-camera-left={-10}
+        shadow-camera-right={10}
+        shadow-camera-top={10}
+        shadow-camera-bottom={-10}
+      />
     </>
   );
 };

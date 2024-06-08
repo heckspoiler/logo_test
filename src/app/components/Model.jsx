@@ -31,7 +31,7 @@ export const Model = () => {
     roughness: 0.25,
     transmission: 1,
     ior: 1.3,
-    chromaticAberration: 0.39,
+    chromaticAberration: 0.19,
     backside: true,
   };
 

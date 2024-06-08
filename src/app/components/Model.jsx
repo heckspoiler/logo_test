@@ -27,11 +27,11 @@ export const Model = () => {
   // });
 
   const materialProps = {
-    thickness: 0.2,
-    roughness: 0.25,
+    thickness: 0.1,
+    roughness: 0.15,
     transmission: 1,
     ior: 1.3,
-    chromaticAberration: 0.19,
+    chromaticAberration: 0.1,
     backside: true,
   };
 

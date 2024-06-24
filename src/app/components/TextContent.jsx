@@ -55,8 +55,8 @@ export const TextContent = ({ isMobile }) => {
   };
 
   useEffect(() => {
-    setUpperYValue(isMobile ? -2.3 : 1.3);
-    setLowerYValue(isMobile ? 2.1 : 1.8);
+    setUpperYValue(isMobile ? -2.3 : 0.2);
+    setLowerYValue(isMobile ? 2.1 : -0.5);
     setUpperFontSize(isMobile ? 0.6 : 0.7);
     setLowerFontSize(isMobile ? 0.3 : 0.15);
   }, [isMobile]);
@@ -79,7 +79,7 @@ export const TextContent = ({ isMobile }) => {
         COMING SOON
       </Text>
       <Text
-        position={[-1.5, lowerYValue, -2.5]}
+        position={[0, lowerYValue, -2.5]}
         fontSize={lowerFontSize}
         fontWeight={300}
         color="yellow"
